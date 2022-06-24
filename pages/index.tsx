@@ -3,10 +3,30 @@ import Head from "next/head";
 import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import { MdConstruction } from "react-icons/md";
 import { CardGroup } from "../components";
+import { Card } from "../types";
 
-const cards = [
-  { title: "Foo", icon: MdConstruction, body: "lorem ipsum dolar sit amet." },
-  // { title: "Bar", icon: MdConstruction, body: "lorem ipsum dolar sit amet." },
+const cards: Omit<Card, "number">[] = [
+  {
+    title: "Foo",
+    icon: MdConstruction,
+    body: "lorem ipsum dolar sit amet.",
+    tags: [],
+    lastReviewed: 0,
+  },
+  {
+    title: "Bar",
+    icon: MdConstruction,
+    body: "lorem ipsum dolar sit amet.",
+    tags: [],
+    lastReviewed: 0,
+  },
+  {
+    title: "Baz",
+    icon: MdConstruction,
+    body: "lorem ipsum dolar sit amet.",
+    tags: [],
+    lastReviewed: 0,
+  },
 ];
 
 const Home: NextPage = () => (

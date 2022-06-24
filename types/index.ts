@@ -9,4 +9,7 @@ export type Card = {
   title: string;
   body: string;
   icon: IconType;
+  number: number;
+  tags: string[];
+  lastReviewed: number;
 };

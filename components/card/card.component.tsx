@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  Box,
   Flex,
   Text,
   Icon,
@@ -8,15 +7,9 @@ import {
   usePrefersReducedMotion,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import type { IconType } from "react-icons";
+import type { Card } from "../../types";
 
-type Props = {
-  title: string;
-  icon: IconType;
-  body: string;
-};
-
-const Card = ({ title, icon, body }: Props) => {
+const CardComponent = ({ title, icon, body, lastReviewed, number }: Card) => {
   const prefersReducedMotion = usePrefersReducedMotion();
   const [isFlipped, setIsFlipped] = useState(false);
   const [isFrontShowing, setShowFront] = useState(false);
@@ -34,7 +27,7 @@ const Card = ({ title, icon, body }: Props) => {
       }
     >
       <Flex
-        p={6}
+        position="absolute"
         height={{ base: "250px", md: "350px", xl: "500px" }}
         width={{ base: "250px", md: "350px", xl: "500px" }}
         direction="column"
@@ -42,26 +35,44 @@ const Card = ({ title, icon, body }: Props) => {
         align="center"
         border="1px"
         borderColor="gray.100"
-        borderRadius="xl"
+        borderRadius="2xl"
+        bg="white"
         boxShadow="0 3px 10px 0 rgba(169, 169, 169, 0.302)"
         cursor="pointer"
         onClick={() => setIsFlipped((_isFlipped) => !_isFlipped)}
       >
         {isFrontShowing ? (
           <>
+            <Text position="absolute" top={4} right={4} color="gray.500">
+              #{number}
+            </Text>
             <Icon as={icon} w={16} h={16} />
             <Heading as="h3" mt={6} size={{ base: "2xl", md: "3xl" }}>
               {title}
             </Heading>
+            <Text position="absolute" bottom={4} left={4} color="gray.500">
+              {/* TODO: use a 'strength' meter which is full when just reviwed and degrades over time */}
+              {lastReviewed ? `Last reviewed: ${lastReviewed}` : "New card"}
+            </Text>
           </>
         ) : (
-          <Box mt={6} transform="rotateY(180deg)">
+          <Flex
+            position="relative"
+            width="100%"
+            height="100%"
+            transform="rotateY(180deg)"
+            justify="center"
+            align="center"
+          >
+            <Text position="absolute" top={4} left={4} color="gray.500">
+              #{number}
+            </Text>
             <Text fontSize={{ base: "xl", md: "3xl" }}>{body}</Text>
-          </Box>
+          </Flex>
         )}
       </Flex>
     </motion.article>
   );
 };
 
-export default Card;
+export default CardComponent;
