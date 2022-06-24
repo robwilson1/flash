@@ -18,7 +18,7 @@ const navMenu = [
 
 const groups = Array.from({ length: 30 }).map((_, idx) => `Group ${idx + 1}`);
 
-export const Sidebar = () => (
+const Sidebar = () => (
   <Box width="100%" height="100vh" px={2} as="aside">
     <Box py={6} height="100%">
       <Box mb={6} px={6}>

@@ -1,5 +1,12 @@
-import type { ThemeConfig } from "@chakra-ui/react";
+import type { ThemeOverride, ThemeConfig } from "@chakra-ui/react";
 
-const config: ThemeConfig = {};
+const config: ThemeConfig = {
+  initialColorMode: "light",
+  useSystemColorMode: false,
+};
 
-export default config;
+const theme: ThemeOverride = {
+  config,
+};
+
+export default theme;
